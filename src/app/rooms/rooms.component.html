@@ -1,0 +1,46 @@
+<!-- <h1>Welcome to {{ hotelName }}</h1> -->
+<!-- <app-header></app-header> -->
+<!-- <app-header></app-header> -->
+<!-- <app-header></app-header> -->
+<!-- <app-header></app-header> -->
+<!-- {{ rooms$ | async | json }} -->
+<div [hidden]="hideRooms">
+  Number of Rooms:
+  <div
+    [ngStyle]="{ color: rooms.availableRooms ? 'steelblue' : 'red' }"
+    [innerText]="numberOfRooms"
+  ></div>
+</div>
+
+<!-- <div *ngIf="selectedRoom">
+  {{ selectedRoom | json }}
+</div> -->
+<router-outlet></router-outlet>
+<div>
+  <button class="btn btn-success" routerLink="add">Add Room</button>
+</div>
+<!-- <h1>
+  {{ error$ | async }}
+</h1> -->
+<!-- <h1>Number of Rooms : {{ roomsCount$ | async }}</h1> -->
+{{ priceFilter | json }}
+<div>
+  <input
+    type="number"
+    class="form-control"
+    placeholder="Price"
+    [formControl]="priceFilter"
+  />
+</div>
+<div *ngIf="rooms$ | async as rooms">
+  <app-rooms-list
+    [title]="title"
+    [rooms]="rooms"
+    [price]="priceFilter.value || 0"
+    (selectRoom)="selectRoom($event)"
+  ></app-rooms-list>
+</div>
+<!-- <button (click)="toggle()">Toggle</button>
+<button (click)="editRoom()">Edit</button>
+<button (click)="deleteRoom()">Delete</button>
+<h1>{{ totalBytes }} loaded</h1> -->
